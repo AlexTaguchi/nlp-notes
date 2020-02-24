@@ -12,37 +12,37 @@ Overview of Natural Language Processing (NLP) neural network models
 ### Recurrent Neural Network (RNN)
 The RNN is designed to be the simplest implementation of a neural network architecture for interpreting sequence and time-series data. As each token (word, nucleic acid, amino acid...) is read, the token (input) is concatenated with a context vector (previous hidden state), and interpreted by the neural network with a Tanh activation function:
 
-<img src="figures/RNN_cell.gif" alt="RNN_cell" height="200">
+<img src="figures/RNN_cell.gif" alt="RNN_cell" height="300">
 
 The updated context vector (new hidden state) becomes the previous hidden state for interpreting the next token:
 
-![RNN_passing](figures/RNN_passing.gif)
+<img src="figures/RNN_passing.gif" alt="RNN_passing" height="300">
 
 After interpreting the full sequence of tokens, the final context vector (final hidden state) represents the neural networks understanding of the sequence.
 
 ### Long Short-Term Memory (LSTM)
 One of the major drawbacks with the RNN is it suffers from long-term memory loss (the context vector will quickly lose memory of tokens it saw a long time ago). We can remedy this by explicitly giving the neural network control over which memories to keep and which to forget. The input and previous hidden state are concatenated as before, but they are first passed through a *forget gate* with a sigmoid output between 0 (forget it) and 1 (remember it):
 
-![LSTM_forget_gate](figures/LSTM_forget_gate.gif)
+<img src="figures/LSTM_forget_gate.gif" alt="LSTM_forget_gate" height="300">
 
 Next, the *input gate* decides what content from the hidden state to store in long-term memory with parallel sigmoid and Tanh activations (outputs between 0 to 1, and -1 to 1, respectively):
 
-![LSTM_input_gate](figures/LSTM_input_gate.gif)
+<img src="figures/LSTM_input_gate.gif" alt="LSTM_input_gate" height="300">
 
 Now we can calculate our long-term memory storage *cell state* by multiplying the forget gate and adding the input gate:
 
-![LSTM_cell_state](figures/LSTM_cell_state.gif)
+<img src="figures/LSTM_cell_state.gif" alt="LSTM_cell_state" height="300">
 
 Finally, the *output gate* combines the learned long-term memory with the hidden state to give our new hidden state:
 
-![LSTM_output_gate](figures/LSTM_output_gate.gif)
+<img src="figures/LSTM_output_gate.gif" alt="LSTM_output_gate" height="300">
 
 ### Gated Recurrent Unit (GRU)
 The LSTM is a thorough, yet complex way to store long-term memory. This model can be simplified without sacrificing much in performance. The GRU removes the cell state, and only contains two gates:
 - Update gate: Replaces the forget and input gates of an LSTM, deciding what information to remember and what to throw away
 - Reset gate: Another gate to decide how much past information to forget
 
-![GRU](figures/GRU.png)
+<img src="figures/figures/GRU.png" alt="GRU" height="300">
 
 ### Bidirectional LSTM (BiLSTM)
 Why should a machine be restricted to reading a sequence in one direction? In many cases (gene and protein sequences included) a great deal of information about a token is lost without combining information from the left and right sides:
