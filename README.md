@@ -16,7 +16,7 @@ The RNN is designed to be the simplest implementation of a neural network archit
 
 The updated context vector (new hidden state) becomes the previous hidden state for interpreting the next token:
 
-<img src="figures/RNN_passing.gif" alt="RNN_passing" height="250">
+<img src="figures/RNN_passing.gif" alt="RNN_passing" height="200">
 
 After interpreting the full sequence of tokens, the final context vector (final hidden state) represents the neural networks understanding of the sequence.
 
@@ -42,7 +42,7 @@ The LSTM is a thorough, yet complex way to store long-term memory. This model ca
 - Update gate: Replaces the forget and input gates of an LSTM, deciding what information to remember and what to throw away
 - Reset gate: Another gate to decide how much past information to forget
 
-<img src="figures/figures/GRU.png" alt="GRU" height="300">
+![GRU](figures/GRU.png)
 
 ### Bidirectional LSTM (BiLSTM)
 Why should a machine be restricted to reading a sequence in one direction? In many cases (gene and protein sequences included) a great deal of information about a token is lost without combining information from the left and right sides:
