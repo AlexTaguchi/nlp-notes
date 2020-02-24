@@ -94,4 +94,4 @@ ELMo does this in both directions in order to capture context from the full sequ
 
 The hidden layers from the forward and backward passes are concatenated, and are suitably aggregated for the NLP task at hand:
 
-<img src="figures/ELMo_embedding.png" alt="ELMo_embedding" height="400">
+<img src="figures/ELMo_embedding.png" alt="ELMo_embedding" height="350">
