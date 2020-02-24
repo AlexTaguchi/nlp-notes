@@ -42,34 +42,34 @@ The LSTM is a thorough, yet complex way to store long-term memory. This model ca
 - Update gate: Replaces the forget and input gates of an LSTM, deciding what information to remember and what to throw away
 - Reset gate: Another gate to decide how much past information to forget
 
-![GRU](figures/GRU.png)
+<img src="figures/GRU.png" alt="GRU" height="300">
 
 ### Bidirectional LSTM (BiLSTM)
 Why should a machine be restricted to reading a sequence in one direction? In many cases (gene and protein sequences included) a great deal of information about a token is lost without combining information from the left and right sides:
 
-![BiLSTM](figures/BiLSTM.png)
+<img src="figures/BiLSTM.png" alt="BiLSTM" height="200">
 
 ### Attention Mechanism
 While LSTMs and GRUs are resistant to long-term memory loss, they are far from perfect and fail to retain connections between distant tokens in long sequences. Attention solves this problem by creating connections between tokens that do not decay with separation distance. The context vector is calculated as a weighted sum of all hiddens states followed by softmax activation, as opposed to simply assigning the current hidden state as the context vector:
 
-![BiLSTM_attention](figures/BiLSTM_attention.png)
+<img src="figures/BiLSTM_attention.png" alt="BiLSTM_attention" height="400">
 
 How the hidden states are weighted depends upon the specific application:
 - Sequence-to-sequence model: A sequence is passed through an encoder, and the final hidden state is passed through a decoder for translation. The attention weights are a function of [1] the previous decoder hidden state and [2] each of the encoder hidden states. This allows sequence-to-sequence models to focus on the most relevant token(s) from the untranslated sequence at each step of the decoding (translation) process:
   
-  ![sequence_to_sequence](figures/sequence_to_sequence.png)
+  <img src="figures/sequence_to_sequence.png" alt="sequence_to_sequence" height="300">
   
 - Self attention model: The attention model can also create distant connections between tokens belonging to the same sequence, thus eliminating the long-term memory loss problems of the LSTM/GRU models altogether. First, *keys*, *values*, and *queries* are computed from the inputs:
   
-  ![self_attention_key_value_query](figures/self_attention_key_value_query.gif)
+  <img src="figures/self_attention_key_value_query.gif" alt="self_attention_key_value_query" height="300">
   
   Starting with the first input, its *query* is used to calculate attention scores using the *keys*, which get multiplied by the *values* :
   
-  ![self_attention_calculation](figures/self_attention_calculation.gif)
+  <img src="figures/self_attention_calculation.gif" alt="self_attention_calculation" height="300">
 
   Summing the weighted results gives the output for the first input:
-
-  ![self_attention_output](figures/self_attention_output.gif)
+  
+  <img src="figures/self_attention_output.gif" alt="self_attention_output" height="300">
 
   And this process is continued for the remaining inputs...
 
@@ -86,12 +86,12 @@ Word2Vec and GloVe learn fixed numerical embeddings for words. The shortcoming o
 
 ELMo is an unsupervised multi-layered LSTM trained to predict the next token in a sequence:
 
-![ELMo_LSTM](figures/ELMo_LSTM.png)
+<img src="figures/ELMo_LSTM.png" alt="ELMo_LSTM" height="400">
 
 ELMo does this in both directions in order to capture context from the full sequence in its embedding, making it a bi-directional LSTM:
 
-![ELMo_BiLM](figures/ELMo_BiLM.png)
+<img src="figures/ELMo_BiLM.png" alt="ELMo_BiLM" height="400">
 
 The hidden layers from the forward and backward passes are concatenated, and are suitably aggregated for the NLP task at hand:
 
-![ELMo_embedding](figures/ELMo_embedding.png)
+<img src="figures/ELMo_embedding.png" alt="ELMo_embedding" height="400">
