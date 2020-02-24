@@ -12,7 +12,7 @@ Overview of Natural Language Processing (NLP) neural network models
 ### Recurrent Neural Network (RNN)
 The RNN is designed to be the simplest implementation of a neural network architecture for interpreting sequence and time-series data. As each token (word, nucleic acid, amino acid...) is read, the token (input) is concatenated with a context vector (previous hidden state), and interpreted by the neural network with a Tanh activation function:
 
-![RNN_cell](figures/RNN_cell.gif)
+<img src="figures/RNN_cell.gif" alt="RNN_cell" height="100">
 
 The updated context vector (new hidden state) becomes the previous hidden state for interpreting the next token:
 
@@ -74,7 +74,7 @@ How the hidden states are weighted depends upon the specific application:
   And this process is continued for the remaining inputs...
 
 ### Transformers
-What if we could do away with the sequential nature of the RNN/LSTM/GRU altogether and model sequence data purely with self attention? 
+What if we could do away with the sequential nature of the RNN/LSTM/GRU altogether and model sequence data purely with self attention? Introducing the transformer.
 ## Embedding
 Embedding is the process of converting a token into a fixed length numerical vector. Nearly all NLP tasks can be broken down into a two-step process of [1] token embedding (TOKENIZATION?) with an unsupervised NLP model pre-trained on a database of sequences, and [2] supervised learning to complete the task at hand. The quality of the embedder is a critical component of how well the task can be learned.
 
