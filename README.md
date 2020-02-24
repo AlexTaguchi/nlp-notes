@@ -42,7 +42,7 @@ The LSTM is a thorough, yet complex way to store long-term memory. This model ca
 - Update gate: Replaces the forget and input gates of an LSTM, deciding what information to remember and what to throw away
 - Reset gate: Another gate to decide how much past information to forget
 
-<img src="figures/GRU.png" alt="GRU" height="300">
+<img src="figures/GRU.png" alt="GRU" height="400">
 
 ### Bidirectional LSTM (BiLSTM)
 Why should a machine be restricted to reading a sequence in one direction? In many cases (gene and protein sequences included) a great deal of information about a token is lost without combining information from the left and right sides:
@@ -57,19 +57,19 @@ While LSTMs and GRUs are resistant to long-term memory loss, they are far from p
 How the hidden states are weighted depends upon the specific application:
 - Sequence-to-sequence model: A sequence is passed through an encoder, and the final hidden state is passed through a decoder for translation. The attention weights are a function of [1] the previous decoder hidden state and [2] each of the encoder hidden states. This allows sequence-to-sequence models to focus on the most relevant token(s) from the untranslated sequence at each step of the decoding (translation) process:
   
-  <img src="figures/sequence_to_sequence.png" alt="sequence_to_sequence" height="300">
+  <img src="figures/sequence_to_sequence.png" alt="sequence_to_sequence" height="400">
   
 - Self attention model: The attention model can also create distant connections between tokens belonging to the same sequence, thus eliminating the long-term memory loss problems of the LSTM/GRU models altogether. First, *keys*, *values*, and *queries* are computed from the inputs:
   
-  <img src="figures/self_attention_key_value_query.gif" alt="self_attention_key_value_query" height="300">
+  <img src="figures/self_attention_key_value_query.gif" alt="self_attention_key_value_query" height="400">
   
   Starting with the first input, its *query* is used to calculate attention scores using the *keys*, which get multiplied by the *values* :
   
-  <img src="figures/self_attention_calculation.gif" alt="self_attention_calculation" height="300">
+  <img src="figures/self_attention_calculation.gif" alt="self_attention_calculation" height="400">
 
   Summing the weighted results gives the output for the first input:
   
-  <img src="figures/self_attention_output.gif" alt="self_attention_output" height="300">
+  <img src="figures/self_attention_output.gif" alt="self_attention_output" height="400">
 
   And this process is continued for the remaining inputs...
 
@@ -90,7 +90,7 @@ ELMo is an unsupervised multi-layered LSTM trained to predict the next token in 
 
 ELMo does this in both directions in order to capture context from the full sequence in its embedding, making it a bi-directional LSTM:
 
-<img src="figures/ELMo_BiLM.png" alt="ELMo_BiLM" height="400">
+<img src="figures/ELMo_BiLM.png" alt="ELMo_BiLM" height="300">
 
 The hidden layers from the forward and backward passes are concatenated, and are suitably aggregated for the NLP task at hand:
 
