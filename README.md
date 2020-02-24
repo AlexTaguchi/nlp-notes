@@ -16,7 +16,7 @@ The RNN is designed to be the simplest implementation of a neural network archit
 
 The updated context vector (new hidden state) becomes the previous hidden state for interpreting the next token:
 
-<img src="figures/RNN_passing.gif" alt="RNN_passing" height="300">
+<img src="figures/RNN_passing.gif" alt="RNN_passing" height="250">
 
 After interpreting the full sequence of tokens, the final context vector (final hidden state) represents the neural networks understanding of the sequence.
 
