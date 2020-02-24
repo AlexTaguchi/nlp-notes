@@ -12,7 +12,7 @@ Overview of Natural Language Processing (NLP) neural network models
 ### Recurrent Neural Network (RNN)
 The RNN is designed to be the simplest implementation of a neural network architecture for interpreting sequence and time-series data. As each token (word, nucleic acid, amino acid...) is read, the token (input) is concatenated with a context vector (previous hidden state), and interpreted by the neural network with a Tanh activation function:
 
-<img src="figures/RNN_cell.gif" alt="RNN_cell" height="100">
+<img src="figures/RNN_cell.gif" alt="RNN_cell" height="200">
 
 The updated context vector (new hidden state) becomes the previous hidden state for interpreting the next token:
 
