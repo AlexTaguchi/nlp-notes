@@ -27,7 +27,7 @@ One of the major drawbacks with the RNN is it suffers from long-term memory loss
 
 Next, the *input gate* decides what content from the hidden state to store in long-term memory with parallel sigmoid and Tanh activations (outputs between 0 to 1, and -1 to 1, respectively):
 
-<img src="figures/LSTM_input_gate.gif" alt="LSTM_input_gate" height="300">
+<img src="figures/LSTM_input_gate.gif" alt="LSTM_input_gate" height="250">
 
 Now we can calculate our long-term memory storage *cell state* by multiplying the forget gate and adding the input gate:
 
@@ -35,14 +35,14 @@ Now we can calculate our long-term memory storage *cell state* by multiplying th
 
 Finally, the *output gate* combines the learned long-term memory with the hidden state to give our new hidden state:
 
-<img src="figures/LSTM_output_gate.gif" alt="LSTM_output_gate" height="300">
+<img src="figures/LSTM_output_gate.gif" alt="LSTM_output_gate" height="250">
 
 ### Gated Recurrent Unit (GRU)
 The LSTM is a thorough, yet complex way to store long-term memory. This model can be simplified without sacrificing much in performance. The GRU removes the cell state, and only contains two gates:
 - Update gate: Replaces the forget and input gates of an LSTM, deciding what information to remember and what to throw away
 - Reset gate: Another gate to decide how much past information to forget
 
-<img src="figures/GRU.png" alt="GRU" height="400">
+<img src="figures/GRU.png" alt="GRU" height="350">
 
 ### Bidirectional LSTM (BiLSTM)
 Why should a machine be restricted to reading a sequence in one direction? In many cases (gene and protein sequences included) a great deal of information about a token is lost without combining information from the left and right sides:
