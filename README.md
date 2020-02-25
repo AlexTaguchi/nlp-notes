@@ -121,4 +121,19 @@ Embedding is the process of converting a token into a fixed length numerical vec
   
   <img src="figures/ELMo_embedding.png" alt="ELMo_embedding" height="350">
 
-- BERT:
+- BERT: A Stack of Transformer encoders, twelve for BERT<sub>BASE</sub>, and twenty four for BERT<sub>LARGE</sub>:
+  
+  <img src="figures/BERT_base_large.png" alt="BERT_base_large" height="300">
+
+  In order to learn useful embeddings, BERT randomly masks out 15% of the sequence tokens, and utilizes the contexual information to predict the masked token:
+
+  <img src="figures/BERT_masking.png" alt="BERT_masking" height="400">
+
+  BERT is also trained to predict whether or not a sequence belongs after another sequence:
+
+  <img src="figures/BERT_two_sentence.png" alt="BERT_two_sentence" height="400">
+
+  The learned encoder features can then be extracted for training other NLP tasks:
+
+  <img src="figures/BERT_embeddings.png" alt="BERT_embeddings" height="350">
+  <img src="figures/BERT_embedding_combinations.png" alt="BERT_embedding_combinations" height="350">
