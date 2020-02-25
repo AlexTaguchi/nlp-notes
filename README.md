@@ -44,8 +44,8 @@ Finally, the *output gate* combines the learned long-term memory with the hidden
 The LSTM is a thorough, yet complex way to store long-term memory. This model can be simplified without sacrificing much in performance. The GRU removes the cell state, and only contains two gates:
 - Update gate: Replaces the forget and input gates of an LSTM, deciding what information to remember and what to throw away
 - Reset gate: Another gate to decide how much past information to forget
-
-<img src="figures/GRU.png" alt="GRU" height="350">
+  
+  <img src="figures/GRU.png" alt="GRU" height="350">
 
 ### Bidirectional LSTM (BiLSTM)
 Why should a machine be restricted to reading a sequence in one direction? In many cases (gene and protein sequences included) a great deal of information about a token is lost without combining information from the left and right sides:
@@ -58,11 +58,11 @@ While LSTMs and GRUs are resistant to long-term memory loss, they are far from p
 <img src="figures/BiLSTM_attention.png" alt="BiLSTM_attention" height="400">
 
 How the hidden states are weighted depends upon the specific application:
-- Sequence-to-sequence model: A sequence is passed through an encoder, and the final hidden state is passed through a decoder for translation. The attention weights are a function of [1] the previous decoder hidden state and [2] each of the encoder hidden states. This allows sequence-to-sequence models to focus on the most relevant token(s) from the untranslated sequence at each step of the decoding (translation) process:
+- **Sequence-to-sequence**: A sequence is passed through an encoder, and the final hidden state is passed through a decoder for translation. The attention weights are a function of [1] the previous decoder hidden state and [2] each of the encoder hidden states. This allows sequence-to-sequence models to focus on the most relevant token(s) from the untranslated sequence at each step of the decoding (translation) process:
   
   <img src="figures/sequence_to_sequence.png" alt="sequence_to_sequence" height="400">
   
-- Self attention model: The attention model can also create distant connections between tokens within the same sequence, thus eliminating the long-term memory loss problems of the LSTM/GRU models altogether. First, *key*, *value*, and *query* vectors are computed from the inputs:
+- **Self attention**: The attention model can also create distant connections between tokens within the same sequence, thus eliminating the long-term memory loss problems of the LSTM/GRU models altogether. First, *key*, *value*, and *query* vectors are computed from the inputs:
   
   <img src="figures/self_attention_key_value_query.gif" alt="self_attention_key_value_query" height="400">
   
@@ -87,11 +87,11 @@ Transformers marked an inflection point with the realization that NLP models cou
 <img src="figures/transformer_multi_head_attention.png" alt="transformer_multi_head_attention" height="250">
 
 Transformers comprise an encoder-decoder architecture:
-- Encoder: Six identical layers are stacked. Each layer comprises a multi-head self attention layer and a feed-forward network, both utilizing residual connections and normalization:
+- **Encoder**: Six identical layers are stacked. Each layer comprises a multi-head self attention layer and a feed-forward network, both utilizing residual connections and normalization:
   
   <img src="figures/transformer_encoder.png" alt="transformer_encoder" height="250">
 
-- Decoder: Six identical layers are stacked. Each layer comprises two multi-head self attention layers and a feed-forward network, all utilizing residual connections and normalization. The first multi-head self attention layer takes the previous outputs of the decoder as its input, and the second multi-head self attention layer takes the embedder output as input. The results are combined and passed through a feed-forward network:
+- **Decoder**: Six identical layers are stacked. Each layer comprises two multi-head self attention layers and a feed-forward network, all utilizing residual connections and normalization. The first multi-head self attention layer takes the previous outputs of the decoder as its input, and the second multi-head self attention layer takes the embedder output as input. The results are combined and passed through a feed-forward network:
   
   <img src="figures/transformer_decoder.png" alt="transformer_decoder" height="400">
 
@@ -105,9 +105,9 @@ The overall Transformer encoder-decoder architecture:
 ### Embedding
 Embedding is the process of converting a token into a fixed length numerical vector. Nearly all NLP tasks can be broken down into a two-step process of [1] token embedding with an unsupervised NLP model pre-trained on a database of sequences, and [2] supervised learning to learn the task at hand.
 
-- Word2Vec and GloVe: The NLP community quickly realized it was better to pre-train embeddings with unsupervised learning on large text databases, as opposed to learning them on the fly during a supervised learning task on what was frequently a small dataset. By training unsupervised models on a large corpus of text, models such as Word2Vec and GloVe learned useful word embeddings for a variety of NLP tasks.
+- **Word2Vec and GloVe**: The NLP community quickly realized it was better to pre-train embeddings with unsupervised learning on large text databases, as opposed to learning them on the fly during a supervised learning task on what was frequently a small dataset. By training unsupervised models on a large corpus of text, models such as Word2Vec and GloVe learned useful word embeddings for a variety of NLP tasks.
 
-- ELMo: Word2Vec and GloVe learn one numerical embeddings for each word. The shortcoming of this approach is that the token embedding should depend on the context! For example, the word "bass" should have very different embeddings for the sentences "I caught a bass" and "turn up the bass".
+- **ELMo**: Word2Vec and GloVe learn one numerical embeddings for each word. The shortcoming of this approach is that the token embedding should depend on the context! For example, the word "bass" should have very different embeddings for the sentences "I caught a bass" and "turn up the bass".
   
   ELMo is an unsupervised multi-layered LSTM trained to predict the next token in a sequence:
   
@@ -121,7 +121,7 @@ Embedding is the process of converting a token into a fixed length numerical vec
   
   <img src="figures/ELMo_embedding.png" alt="ELMo_embedding" height="350">
 
-- BERT: A Stack of Transformer encoders, twelve for BERT<sub>BASE</sub>, and twenty four for BERT<sub>LARGE</sub>:
+- **BERT**: A Stack of Transformer encoders, twelve for BERT<sub>BASE</sub>, and twenty four for BERT<sub>LARGE</sub>:
   
   <img src="figures/BERT_base_large.png" alt="BERT_base_large" height="300">
 
