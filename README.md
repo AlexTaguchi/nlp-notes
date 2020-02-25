@@ -8,6 +8,8 @@ Overview of Natural Language Processing (NLP) neural network models
 - https://www.researchgate.net/publication/327645964_Unsupervised_Suicide_Note_Classification
 - https://blog.floydhub.com/attention-mechanism/
 - https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a
+- https://arxiv.org/pdf/1601.06733.pdf
+- http://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf
 
 ### Recurrent Neural Network (RNN)
 The RNN is designed to be the simplest implementation of a neural network architecture for interpreting sequence and time-series data. As each token (word, nucleic acid, amino acid...) is read, the token (input) is concatenated with a context vector (previous hidden state), and interpreted by the neural network with a Tanh activation function:
@@ -27,7 +29,7 @@ One of the major drawbacks with the RNN is it suffers from long-term memory loss
 
 Next, the *input gate* decides what content from the hidden state to store in long-term memory with parallel sigmoid and Tanh activations (outputs between 0 to 1, and -1 to 1, respectively):
 
-<img src="figures/LSTM_input_gate.gif" alt="LSTM_input_gate" height="250">
+<img src="figures/LSTM_input_gate.gif" alt="LSTM_input_gate" height="275">
 
 Now we can calculate our long-term memory storage *cell state* by multiplying the forget gate and adding the input gate:
 
@@ -35,7 +37,7 @@ Now we can calculate our long-term memory storage *cell state* by multiplying th
 
 Finally, the *output gate* combines the learned long-term memory with the hidden state to give our new hidden state:
 
-<img src="figures/LSTM_output_gate.gif" alt="LSTM_output_gate" height="250">
+<img src="figures/LSTM_output_gate.gif" alt="LSTM_output_gate" height="275">
 
 ### Gated Recurrent Unit (GRU)
 The LSTM is a thorough, yet complex way to store long-term memory. This model can be simplified without sacrificing much in performance. The GRU removes the cell state, and only contains two gates:
@@ -50,7 +52,7 @@ Why should a machine be restricted to reading a sequence in one direction? In ma
 <img src="figures/BiLSTM.png" alt="BiLSTM" height="200">
 
 ### Attention Mechanism
-While LSTMs and GRUs are resistant to long-term memory loss, they are far from perfect and fail to retain connections between distant tokens in long sequences. Attention solves this problem by creating connections between tokens that do not decay with separation distance. The context vector is calculated as a weighted sum of all hiddens states followed by softmax activation, as opposed to simply assigning the current hidden state as the context vector:
+While LSTMs and GRUs are resistant to long-term memory loss, they are far from perfect and fail to retain connections between distant tokens in long sequences. Attention solves this problem by creating connections between tokens without any distance dependence. The context vector is calculated as a weighted sum of all hiddens states followed by softmax activation, as opposed to simply assigning a hidden state as the context vector:
 
 <img src="figures/BiLSTM_attention.png" alt="BiLSTM_attention" height="400">
 
@@ -59,22 +61,44 @@ How the hidden states are weighted depends upon the specific application:
   
   <img src="figures/sequence_to_sequence.png" alt="sequence_to_sequence" height="400">
   
-- Self attention model: The attention model can also create distant connections between tokens belonging to the same sequence, thus eliminating the long-term memory loss problems of the LSTM/GRU models altogether. First, *keys*, *values*, and *queries* are computed from the inputs:
+- Self attention model: The attention model can also create distant connections between tokens within the same sequence, thus eliminating the long-term memory loss problems of the LSTM/GRU models altogether. First, *key*, *value*, and *query* vectors are computed from the inputs:
   
   <img src="figures/self_attention_key_value_query.gif" alt="self_attention_key_value_query" height="400">
   
-  Starting with the first input, its *query* is used to calculate attention scores using the *keys*, which get multiplied by the *values* :
+  Starting with the first input, its *query* is used to calculate attention scores from the *keys*, which are multiplied with the *values* :
   
   <img src="figures/self_attention_calculation.gif" alt="self_attention_calculation" height="400">
 
-  Summing the weighted results gives the output for the first input:
+  Summing the weighted results produces the output for the first input:
   
   <img src="figures/self_attention_output.gif" alt="self_attention_output" height="400">
 
   And this process is continued for the remaining inputs...
 
+### Long Short-Term Memory Network (LSTMN)
+The LSTM was combined with self attention, connecting distant past tokens to the current decision process. The current word is in red and the size of the blue shade indicates the activation level:
+
+<img src="figures/self_attention_LSTM.png" alt="self_attention_LSTM" height="250">
+
 ### Transformers
-What if we could do away with the sequential nature of the RNN/LSTM/GRU altogether and model sequence data purely with self attention? Introducing the transformer.
+Transformers marked an inflection point with the realization that NLP models could be driven entirely by the self attention mechanism without any recurrent architecture (RNN/LSTM/GRU). The key was to implement a multi-head self attention mechanism, where multiple key-value pair encodings are learned for each input. Free from the sequential nature of traditional recurrent neural networks, learning could be highly parallelized for faster training of deeper models:
+
+<img src="figures/transformer_multi_head_attention.png" alt="transformer_multi_head_attention" height="250">
+
+Transformers comprise an encoder-decoder architecture:
+- Encoder: Six identical layers are stacked. Each layer comprises a multi-head self attention layer and a feed-forward network, both utilizing residual connections and normalization:
+  
+  <img src="figures/transformer_encoder.png" alt="transformer_encoder" height="250">
+
+- Decoder: Six identical layers are stacked. Each layer comprises two multi-head self attention layers and a feed-forward network, all utilizing residual connections and normalization. The first multi-head self attention layer takes the previous outputs of the decoder as its input, and the second multi-head self attention layer takes the embedder output as input. The results are combined and passed through a feed-forward network:
+  
+  <img src="figures/transformer_decoder.png" alt="transformer_decoder" height="400">
+
+The overall Transformer encoder-decoder architecture:
+
+<img src="figures/transformer_architecture.png" alt="transformer_architecture" height="400">
+<img src="figures/transformer_encoder_decoder.png" alt="transformer_encoder_decoder" height="300">
+
 ## Embedding
 Embedding is the process of converting a token into a fixed length numerical vector. Nearly all NLP tasks can be broken down into a two-step process of [1] token embedding (TOKENIZATION?) with an unsupervised NLP model pre-trained on a database of sequences, and [2] supervised learning to complete the task at hand. The quality of the embedder is a critical component of how well the task can be learned.
 
