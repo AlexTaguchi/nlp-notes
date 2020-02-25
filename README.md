@@ -96,8 +96,10 @@ Transformers comprise an encoder-decoder architecture:
 
 The overall Transformer encoder-decoder architecture:
 
-<img src="figures/transformer_architecture.png" alt="transformer_architecture" height="400">
-<img src="figures/transformer_encoder_decoder.png" alt="transformer_encoder_decoder" height="200">
+<div>
+  <img src="figures/transformer_architecture.png" alt="transformer_architecture" height="400">
+  <img src="figures/transformer_encoder_decoder.png" alt="transformer_encoder_decoder" height="200">
+</div>
 
 ## Embedding
 Embedding is the process of converting a token into a fixed length numerical vector. Nearly all NLP tasks can be broken down into a two-step process of [1] token embedding (TOKENIZATION?) with an unsupervised NLP model pre-trained on a database of sequences, and [2] supervised learning to complete the task at hand. The quality of the embedder is a critical component of how well the task can be learned.
