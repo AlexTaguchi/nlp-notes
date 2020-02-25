@@ -3,6 +3,7 @@ Overview of Natural Language Processing (NLP) neural network models
 
 *All of the excellent figures (and some of the wording) are taken from the following references*:
 - https://towardsdatascience.com/illustrated-guide-to-lstms-and-gru-s-a-step-by-step-explanation-44e9eb85bf21
+- http://jalammar.github.io/illustrated-transformer/
 - http://jalammar.github.io/illustrated-bert/
 - http://colah.github.io/posts/2015-09-NN-Types-FP/
 - https://www.researchgate.net/publication/327645964_Unsupervised_Suicide_Note_Classification
@@ -80,7 +81,7 @@ The LSTM was combined with self attention, connecting distant past tokens to the
 
 <img src="figures/self_attention_LSTM.png" alt="self_attention_LSTM" height="250">
 
-### Transformers
+### Transformer
 Transformers marked an inflection point with the realization that NLP models could be driven entirely by the self attention mechanism without any recurrent architecture (RNN/LSTM/GRU). The key was to implement a multi-head self attention mechanism, where multiple key-value pair encodings are learned for each input. Free from the sequential nature of traditional recurrent neural networks, learning could be highly parallelized for faster training of deeper models:
 
 <img src="figures/transformer_multi_head_attention.png" alt="transformer_multi_head_attention" height="250">
@@ -101,23 +102,23 @@ The overall Transformer encoder-decoder architecture:
   <img src="figures/transformer_encoder_decoder.png" alt="transformer_encoder_decoder" height="300">
 </div>
 
-## Embedding
-Embedding is the process of converting a token into a fixed length numerical vector. Nearly all NLP tasks can be broken down into a two-step process of [1] token embedding (TOKENIZATION?) with an unsupervised NLP model pre-trained on a database of sequences, and [2] supervised learning to complete the task at hand. The quality of the embedder is a critical component of how well the task can be learned.
+### Embedding
+Embedding is the process of converting a token into a fixed length numerical vector. Nearly all NLP tasks can be broken down into a two-step process of [1] token embedding with an unsupervised NLP model pre-trained on a database of sequences, and [2] supervised learning to learn the task at hand.
 
-### Word2Vec and GloVe
-The NLP community quickly realized it was better to pre-train embeddings with unsupervised learning on large text databases, as opposed to learning them on the fly during a supervised learning task on what was frequently a small dataset. By training unsupervised models on a large corpus of text, models such as Word2Vec and GloVe learned useful word embeddings for a variety of NLP tasks.
+- Word2Vec and GloVe: The NLP community quickly realized it was better to pre-train embeddings with unsupervised learning on large text databases, as opposed to learning them on the fly during a supervised learning task on what was frequently a small dataset. By training unsupervised models on a large corpus of text, models such as Word2Vec and GloVe learned useful word embeddings for a variety of NLP tasks.
 
-### ELMo
-Word2Vec and GloVe learn fixed numerical embeddings for words. The shortcoming of this approach is that the numerical embedding for a token should depend on the context! For example, the word "bass" should have very different embeddings for the sentences "I caught a bass" and "turn up the bass".
+- ELMo: Word2Vec and GloVe learn one numerical embeddings for each word. The shortcoming of this approach is that the token embedding should depend on the context! For example, the word "bass" should have very different embeddings for the sentences "I caught a bass" and "turn up the bass".
+  
+  ELMo is an unsupervised multi-layered LSTM trained to predict the next token in a sequence:
+  
+  <img src="figures/ELMo_LSTM.png" alt="ELMo_LSTM"   height="400">
+  
+  ELMo does this in both directions in order to capture full sequence context in its embeddings, making it a multi-layer bi-directional LSTM:
+  
+  <img src="figures/ELMo_BiLM.png" alt="ELMo_BiLM"   height="300">
+  
+  The hidden layers from the forward and backward passes are concatenated, and are suitably aggregated for the NLP task at hand:
+  
+  <img src="figures/ELMo_embedding.png" alt="ELMo_embedding" height="350">
 
-ELMo is an unsupervised multi-layered LSTM trained to predict the next token in a sequence:
-
-<img src="figures/ELMo_LSTM.png" alt="ELMo_LSTM" height="400">
-
-ELMo does this in both directions in order to capture context from the full sequence in its embedding, making it a bi-directional LSTM:
-
-<img src="figures/ELMo_BiLM.png" alt="ELMo_BiLM" height="300">
-
-The hidden layers from the forward and backward passes are concatenated, and are suitably aggregated for the NLP task at hand:
-
-<img src="figures/ELMo_embedding.png" alt="ELMo_embedding" height="350">
+- BERT:
