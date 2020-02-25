@@ -98,7 +98,7 @@ The overall Transformer encoder-decoder architecture:
 
 <div>
   <img src="figures/transformer_architecture.png" alt="transformer_architecture" height="400">
-  <img src="figures/transformer_encoder_decoder.png" alt="transformer_encoder_decoder" height="200">
+  <img src="figures/transformer_encoder_decoder.png" alt="transformer_encoder_decoder" height="300">
 </div>
 
 ## Embedding
