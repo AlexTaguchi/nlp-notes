@@ -82,10 +82,16 @@ class TransformerModel(nn.Module):
 
     def forward(self, sequences):
         self.src_mask = self._generate_square_subsequent_mask(len(sequences)).to(sequences.device)
+        print(sequences.size())
         sequences = self.embedder(sequences) * math.sqrt(self.token_embedding)
+        print(sequences.size())
         sequences = self.positional_encoder(sequences)
+        print(sequences.size())
         output = self.transformer_encoder(sequences, self.src_mask)
+        print(output.size())
         output = self.linear(output)
+        print(output.size())
+        e
         return output
 
 
